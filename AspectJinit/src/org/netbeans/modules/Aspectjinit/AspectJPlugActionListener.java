@@ -18,7 +18,7 @@ import org.openide.awt.ActionRegistration;
  * @author sean
  */
 @ActionID(category = "Edit", id = "org.netbeans.modules.Aspectjinit.AspectJPlugActionListener")
-@ActionRegistration(displayName = "AspectJ Spring 2017")
+@ActionRegistration(iconBase = "org/netbeans/modules/Aspectjinit/AspectMenuIcon.png", displayName = "AspectJ Spring 2017")
 @ActionReferences({
     @ActionReference(path = "Menu/Tools"),
     @ActionReference(path = "Toolbars/File")
