@@ -18,29 +18,29 @@ import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 
 @MultiViewElement.Registration(
-        displayName = "#LBL_AspectJSpring_VISUAL",
+        displayName = "#LBL_AspectJSpringFile_VISUAL",
         iconBase = "org/netbeans/aspectj/file/ajcu_obj.gif",
-        mimeType = "text/x-AspectJ",
+        mimeType = "text/x-aj",
         persistenceType = TopComponent.PERSISTENCE_NEVER,
-        preferredID = "AspectJSpringVisual",
+        preferredID = "AspectJSpringFileVisual",
         position = 2000
 )
-@Messages("LBL_AspectJSpring_VISUAL=Visual")
-public final class AspectJSpringVisualElement extends JPanel implements MultiViewElement {
+@Messages("LBL_AspectJSpringFile_VISUAL=Visual")
+public final class AspectJSpringFileVisualElement extends JPanel implements MultiViewElement {
 
-    private AspectJSpringDataObject obj;
+    private AspectJSpringFileDataObject obj;
     private JToolBar toolbar = new JToolBar();
     private transient MultiViewElementCallback callback;
 
-    public AspectJSpringVisualElement(Lookup lkp) {
-        obj = lkp.lookup(AspectJSpringDataObject.class);
+    public AspectJSpringFileVisualElement(Lookup lkp) {
+        obj = lkp.lookup(AspectJSpringFileDataObject.class);
         assert obj != null;
         initComponents();
     }
 
     @Override
     public String getName() {
-        return "AspectJSpringVisualElement";
+        return "AspectJSpringFileVisualElement";
     }
 
     /**

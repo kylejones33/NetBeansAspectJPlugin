@@ -16,7 +16,7 @@ import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
-import org.netbeans.aspectj.file.AspectJSpringDataObject;
+import org.netbeans.aspectj.file.AspectJSpringFileDataObject;
 import org.netbeans.core.spi.multiview.MultiViewElement;
 import org.openide.*;
 import org.openide.loaders.MultiFileLoader;

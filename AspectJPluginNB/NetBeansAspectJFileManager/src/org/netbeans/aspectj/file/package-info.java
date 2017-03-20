@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-@TemplateRegistration(folder = "Other", content = "AspectJSpringTemplate.apj")
+@TemplateRegistration(folder = "Other", content = "AspectJSpringFileTemplate.aj")
 package org.netbeans.aspectj.file;
 
 import org.netbeans.api.templates.TemplateRegistration;
