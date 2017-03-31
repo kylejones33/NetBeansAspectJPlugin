@@ -6,7 +6,6 @@
 package org.netbeans.aspectj.actions;
 
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.netbeans.core.spi.multiview.MultiViewElement;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
@@ -39,7 +38,7 @@ import org.openide.util.NbBundle.Messages;
 
 })
 
-public final class AspectJEditorTopComponent extends TopComponent  {
+public class AspectJEditorTopComponent extends TopComponent  {
 
     public AspectJEditorTopComponent() {
         initComponents();

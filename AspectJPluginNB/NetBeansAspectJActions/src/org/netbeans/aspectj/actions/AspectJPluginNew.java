@@ -8,20 +8,10 @@ package org.netbeans.aspectj.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.tools.FileObject;
-import org.netbeans.*;
-import org.netbeans.api.actions.Openable;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
-import org.netbeans.aspectj.file.AspectJSpringFileDataObject;
-import org.netbeans.core.spi.multiview.MultiViewElement;
-import org.openide.*;
-import org.openide.loaders.MultiFileLoader;
-import org.openide.util.Lookup;
-import org.openide.windows.TopComponent;
 
 
 @ActionID(
@@ -35,7 +25,7 @@ import org.openide.windows.TopComponent;
 @Messages("CTL_AspectJPluginNew=New AJ File")
 
 
-public final class AspectJPluginNew implements ActionListener {
+public class AspectJPluginNew implements ActionListener {
 
     
     @Override
