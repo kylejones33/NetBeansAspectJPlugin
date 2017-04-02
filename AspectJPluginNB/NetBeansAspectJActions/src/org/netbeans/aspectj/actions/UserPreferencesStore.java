@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import org.aspectj.ajde.Ajde;
 
 import org.aspectj.ajde.ui.UserPreferencesAdapter;
 import org.aspectj.tools.ajbrowser.core.BrowserErrorHandler;

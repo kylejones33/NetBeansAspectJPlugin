@@ -63,6 +63,7 @@ final class TrivialLayout implements LayoutManager {
         //do nothing
     }
 
+    @Override
     public void layoutContainer (Container parent) {
         if ( parent instanceof TapPanel ) {
             layoutTapPanel ( (TapPanel) parent );

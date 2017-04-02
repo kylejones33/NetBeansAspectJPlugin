@@ -34,6 +34,8 @@ public class AspectJPluginNew implements ActionListener {
         AspectJEditorTopComponent window = new AspectJEditorTopComponent();
         window.open();
         JOptionPane.showMessageDialog(null, "This creates a new AspectJ file and adds to the editor screen");
+        AspectJPluginNBManager.init();
+        
 
     }
 }

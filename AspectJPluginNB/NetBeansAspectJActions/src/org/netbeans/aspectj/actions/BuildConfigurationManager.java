@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.aspectj.ajde.Ajde;
 import org.aspectj.ajde.internal.LstBuildConfigManager;
-import org.aspectj.asm.AsmManager;
 import org.aspectj.tools.ajbrowser.core.BrowserErrorHandler;
 //import org.eclipse.jdt.internal.core.JavaProject;
 import org.netbeans.api.java.project.JavaProjectConstants;

@@ -54,6 +54,50 @@ public class StructureFilterPanel extends JToolBar {
 
    StructureFilterPanel(StructureView currentView) {
       super(JToolBar.HORIZONTAL);
+        this.MODEL_LISTENER = new IHierarchyListener() {
+            
+            @Override
+            public void elementsUpdated(IHierarchy model) {
+                //System.out.println(" ########## ELEMENTS UPDATED #############");
+                String path = Ajde.getDefault().getBuildConfigManager().getActiveConfigFile();
+                String fileName = "<no active config>";
+                if (path != null) {
+                    fileName = new File(path).getName();
+                }
+                final String finalname = fileName;
+                if (!SwingUtilities.isEventDispatchThread()) {
+                    try {
+                        SwingUtilities.invokeAndWait(new Runnable() {
+                            
+                            public void run() {
+                                WindowManager wm = WindowManager.getDefault();
+                                //Due to reported NPE
+                                if (wm != null) {
+                                    TopComponent tc = WindowManager.getDefault().findTopComponent("structureViewComponent");
+                                    //Due to reported NPE
+                                    if (tc != null) {
+                                        tc.setName("AspectJ CrossRefs (" + finalname + ")");
+                                    }
+                                }
+                            }
+                        });
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    
+                } else {
+                    WindowManager wm = WindowManager.getDefault();
+                    //Due to reported NPE
+                    if (wm != null) {
+                        TopComponent tc = wm.findTopComponent("structureViewComponent");
+                        //Due to reported NPE
+                        if (tc != null) {
+                            tc.setName("AspectJ CrossRefs  (" + fileName + ")");
+                        }
+                    }
+                }
+            }
+        };
 
       AsmManager.lastActiveStructureModel.addListener(MODEL_LISTENER);
       setFloatable(false);
@@ -123,6 +167,7 @@ public class StructureFilterPanel extends JToolBar {
 
    class MemberFilterListener implements ActionListener {
 
+      @Override
       public void actionPerformed(ActionEvent e) {
 
          JToggleButton toggle = (JToggleButton) e.getSource();
@@ -172,47 +217,5 @@ public class StructureFilterPanel extends JToolBar {
          Ajde.getDefault().getStructureViewManager().refreshView(currentView);
       }
    }
-   public final IHierarchyListener MODEL_LISTENER = new IHierarchyListener() {
-
-      public void elementsUpdated(IHierarchy model) {
-         //System.out.println(" ########## ELEMENTS UPDATED #############");
-         String path = Ajde.getDefault().getBuildConfigManager().getActiveConfigFile();
-         String fileName = "<no active config>";
-         if (path != null) {
-            fileName = new File(path).getName();
-         }
-         final String finalname = fileName;
-         if (!SwingUtilities.isEventDispatchThread()) {
-            try {
-               SwingUtilities.invokeAndWait(new Runnable() {
-
-                  public void run() {
-                     WindowManager wm = WindowManager.getDefault();
-                     //Due to reported NPE
-                     if (wm != null) {
-                        TopComponent tc = WindowManager.getDefault().findTopComponent("structureViewComponent");
-                        //Due to reported NPE
-                        if (tc != null) {
-                           tc.setName("AspectJ CrossRefs (" + finalname + ")");
-                        }
-                     }
-                  }
-               });
-            } catch (Exception ex) {
-               ex.printStackTrace();
-            }
-
-         } else {
-            WindowManager wm = WindowManager.getDefault();
-            //Due to reported NPE
-            if (wm != null) {
-               TopComponent tc = wm.findTopComponent("structureViewComponent");
-               //Due to reported NPE
-               if (tc != null) {
-                  tc.setName("AspectJ CrossRefs  (" + fileName + ")");
-               }
-            }
-         }
-      }
-   };
+   public final IHierarchyListener MODEL_LISTENER;
 }

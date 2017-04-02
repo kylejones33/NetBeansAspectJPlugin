@@ -5,10 +5,7 @@
 
 package org.netbeans.aspectj.annotation;
 
-/**
- *
- * @author Ramos
- */
+
 public interface AspectjAnnotationConstants {
     String ADVICE = "org-aspectj-tools-ajde-netbeans-annotations-adviceannotation";
     String ADVICE_TARGET = "org-aspectj-tools-ajde-netbeans-annotations-advicetargetannotation";
@@ -29,7 +26,6 @@ public interface AspectjAnnotationConstants {
     String DYNAMIC_AROUND_ADVISER = "org-aspectj-tools-ajde-netbeans-annotations-dynamic-aroundadviserannotation";
     String DYNAMIC_BEFORE_ADVISER = "org-aspectj-tools-ajde-netbeans-annotations-dynamic-beforeadviserannotation";
     String DYNAMIC_SOURCE_AND_TARGET = "org-aspectj-tools-ajde-netbeans-annotations-dynamic-source_and_target";
-    
     
     String DECLARE_ERROR_SOURCE = "org-aspectj-tools-ajde-netbeans-annotations-declare_error_source";
     String DECLARE_ERROR_TARGET = "org-aspectj-tools-ajde-netbeans-annotations-declare_error_target";

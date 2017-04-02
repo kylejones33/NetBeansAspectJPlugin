@@ -19,28 +19,33 @@ import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 
-/** TODO migtrate to presenter and so on */
 public class AspectJPluginSelectConfigurationAction extends CallableSystemAction {
 
    public static boolean PROP_ENABLED = false;
    private JPopupMenu configsMenu = null;
-   final AbstractAction BUILD_ACTION = new AbstractAction() {
+   final AbstractAction BUILD_ACTION;
 
-      public void actionPerformed(ActionEvent actionevent) {
-         AspectJPluginNBManager.INSTANCE.saveAll();
-         /*
-         Project project = OpenProjects.getDefault().getMainProject();
-         final ActionProvider ap = project.getLookup().lookup(ActionProvider.class);
-         SwingUtilities.invokeLater(new Runnable() {
-         public void run() {
-         ap.invokeAction(ActionProvider.COMMAND_BUILD,null);
-         }
-         });
-          **/
-         configsMenu.setVisible(false);
-      }
-   };
+    public AspectJPluginSelectConfigurationAction() {
+        this.BUILD_ACTION = new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent actionevent) {
+                AspectJPluginNBManager.INSTANCE.saveAll();
+                /*
+                Project project = OpenProjects.getDefault().getMainProject();
+                final ActionProvider ap = project.getLookup().lookup(ActionProvider.class);
+                SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                ap.invokeAction(ActionProvider.COMMAND_BUILD,null);
+                }
+                });
+                **/
+                configsMenu.setVisible(false);
+            }
+        };
+    }
 
+   @Override
    public void performAction() {
    /* empty */
    }
@@ -63,6 +68,7 @@ public class AspectJPluginSelectConfigurationAction extends CallableSystemAction
 
    }
 
+   @Override
    public String getName() {
       //super(NbBundle.getMessage(ClassBrowserAction.class, "CTL_ClassBrowserAction"));
       return NbBundle.getMessage(AspectJPluginSelectConfigurationAction.class,
@@ -74,6 +80,7 @@ public class AspectJPluginSelectConfigurationAction extends CallableSystemAction
       return "org/aspectj/ajde/resources/actions/popup.gif";
    }
 
+   @Override
    public HelpCtx getHelpCtx() {
       return HelpCtx.DEFAULT_HELP;
    }
@@ -112,6 +119,7 @@ public class AspectJPluginSelectConfigurationAction extends CallableSystemAction
 
          boolean loaded = false;
 
+         @Override
          public void itemStateChanged(ItemEvent e) {
             if (loaded) {
                return;
@@ -143,8 +151,5 @@ public class AspectJPluginSelectConfigurationAction extends CallableSystemAction
       return menu;
    }
 
-//   @Override
-//   public Component getToolbarPresenter() {
-//      return super.getToolbarPresenter();
-//   }
+
 }

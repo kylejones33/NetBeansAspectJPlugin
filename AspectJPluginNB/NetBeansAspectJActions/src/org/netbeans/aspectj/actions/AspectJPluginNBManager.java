@@ -6,7 +6,6 @@ import org.aspectj.asm.IHierarchy;
 import org.netbeans.aspectj.annotation.Annotator;
 import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
-
 import org.aspectj.ajde.Ajde;
 import org.aspectj.ajde.ui.UserPreferencesAdapter;
 import org.netbeans.api.project.Project;
@@ -14,7 +13,6 @@ import org.openide.LifecycleManager;
 import org.openide.windows.WindowManager;
 import org.netbeans.api.editor.EditorRegistry;
 import java.awt.Frame;
-
 
 import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeListener;
@@ -48,23 +46,16 @@ import org.netbeans.aspectj.compileonsave.CompileOnSave;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.netbeans.modules.editor.NbEditorUtilities;
 import org.netbeans.spi.project.ActionProvider;
-import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataObject;
 import org.openide.text.Line;
-import org.openide.util.actions.CallableSystemAction;
-import org.openide.util.actions.SystemAction;
 
-/**
- * DOCUMENT ME!
- *
- * @author $author$
- * @version $Revision: 1.2 $
- */
+
 public class AspectJPluginNBManager {
 
    public static AspectJPluginNBManager INSTANCE = null;
    static String restoredConfigFile = null;
    AspectJPluginNBManager.BuildListenerImpl buildListener;
+   
    private NbProjectProperties projectProperties = null;
    private StructureViewPanel multiViewPanel;
    private UserPreferencesAdapter preferencesAdapter = null;
@@ -75,22 +66,24 @@ public class AspectJPluginNBManager {
     * Creates a new NbManager object.
     */
    protected AspectJPluginNBManager() {
+
       logger.log(Level.INFO, "AJDE AspectJPluginNBManager starting");
       preferencesAdapter = new UserPreferencesStore();
       projectProperties = new NbProjectProperties(preferencesAdapter);
       NbEditorAdapter nbeditoradapter = new NbEditorAdapter();
       NbCompilerMessages nbcompilermessages = new NbCompilerMessages();
       NbUIAdapter nbuiadapter = new NbUIAdapter();
-     /* AjdeUIManager.getDefault().init(nbeditoradapter, nbcompilermessages,
+     /*AjdeUIManager.getDefault().init(nbeditoradapter, nbcompilermessages,
               projectProperties, preferencesAdapter, nbuiadapter,
               new NbIconRegistry(), getRootFrame(), new ProgressMonitor(),
               new BrowserErrorHandler(), true); */
+     //Ajde.getDefault().init(compilerConfig, uiBuildMessageHandler, monitor, nbeditoradapter, nbuiadapter, iconRegistry, rootFrame, runtimeProperties, ignoreGotoLines);
       Ajde.getDefault().init(null, null, null, nbeditoradapter, nbuiadapter, null, null, null, ignoreGotoLines);
-
       logger.log(Level.INFO, "AJDEUIManager initialized");
       //JPanel browser = modifyBrowserPanel();
       multiViewPanel = new LayoutHelper().modifyFilePanel2();
       nbeditoradapter.setTreeRef(treeRef);
+
       //multiViewPanel = new NetBeansMultiViewPanel(browser, filePanel);
 //        System.out.println("BEFORE: "+Ajde.getDefault().getStructureViewManager().getDefaultFileView().getSourceFile());
 //        Ajde.getDefault().getStructureViewManager().getDefaultFileView().setSourceFile("");
@@ -98,49 +91,40 @@ public class AspectJPluginNBManager {
       //String string = NetBeansAjdeUIManager.getDefault().getBuildOptions().getNonStandardOptions();
       //NetBeansAjdeUIManager.getDefault().getBuildOptions().setComplianceLevel(AjcBuildOptions.VERSION_15);
 
-      
-      
       AsmManager.lastActiveStructureModel.addListener(Annotator.getDefault());
       expandTreePathsWhenModelreloaded();
       EditorRegistry.addPropertyChangeListener(documentSwitchListener);
-      //        Ajde.getDefault().getConfigurationManager()
-//                .setActiveConfigFile("<all project files>");
+           //   Ajde.getDefault().getConfigurationManager()
+           //    .setActiveConfigFile("<all project files>");
 
-
-      //commented out 3 lines
-//      Ajde.getDefault().setConfigurationManager(NetBeansLstBuildConfigManager.getDefault());
-//      if (restoredConfigFile != null) {
-//         NetBeansLstBuildConfigManager.getDefault().initWithConfigFile(restoredConfigFile);
-//      }
       buildListener = new BuildListenerImpl();
       Ajde.getDefault().getBuildConfigManager().addListener((BuildConfigListener) buildListener);
       AsmManager.attemptIncrementalModelRepairs = true;
-      //Ajde.getDefault().getBuildManager().setBuildModelMode(false);
+     // Ajde.getDefault().getBuildManager().setBuildModelMode(false);
       logger.log(Level.INFO, "AJDE AspectJPluginNBManager started");
    }
 
    public static void init() {
-      //System.out.println("AspectJPluginNBManager#init");
-      if (INSTANCE == null) {
-         INSTANCE = new AspectJPluginNBManager();
+      System.out.println("AspectJPluginNBManager#init");
+     if (INSTANCE == null) {
+       INSTANCE = new AspectJPluginNBManager();
       }
    }
 
    public void build() {
-      logger.log(Level.INFO, "AJDE AspectJPluginNBManager build");
+       System.out.println("Worked!");
+    /*  logger.log(Level.INFO, "AJDE AspectJPluginNBManager build");
       //System.out.println("AspectJPluginNBManager#build");
       CompileOnSave.getDefault().pause(true);
       saveAll();
       if (projectProperties.getOutputPath() != null) {
-         //true causes ant build for project
-         //in case of test build this has to be always set to false
          buildListener.build = true;
          Ajde.getDefault().getBuildConfigManager().buildModel(restoredConfigFile);
          
       } else {
          handleNoOutputPath();
       }
-      CompileOnSave.getDefault().pause(false);
+      CompileOnSave.getDefault().pause(false);*/
    }
 
    public void compile() {
@@ -150,6 +134,7 @@ public class AspectJPluginNBManager {
       saveAll();
       if (projectProperties.getOutputPath() != null) {
          buildListener.build = false;
+         
          Ajde.getDefault().getBuildConfigManager().buildModel(restoredConfigFile);
       
       } else {
@@ -170,7 +155,7 @@ public class AspectJPluginNBManager {
     * DOCUMENT ME!
     */
    public void debug() {
-      //System.out.println("AspectJPluginNBManager#debug");
+      
       logger.log(Level.INFO, "AJDE AspectJPluginNBManager debug");
       Project project = OpenProjects.getDefault().getMainProject();
       AspectJPluginNBManager.INSTANCE.getProjectProperties().setProject(project);
@@ -250,6 +235,7 @@ public class AspectJPluginNBManager {
       AsmManager.lastActiveStructureModel.addListener(new IHierarchyListener()
       {
 
+         @Override
          public void elementsUpdated(IHierarchy arg0) {
             for (int j = 0; j < treeRef.getRowCount(); j++) {
                treeRef.expandRow(j);
@@ -310,10 +296,7 @@ public class AspectJPluginNBManager {
           }
          return;
       }
-      CallableSystemAction RUN = (CallableSystemAction) SystemAction.get(AspectJPluginRun.class);
-      CallableSystemAction DEBUG = (CallableSystemAction) SystemAction.get(AspectJPluginDebug.class);
-      RUN.setEnabled(flag);
-      DEBUG.setEnabled(flag);
+
    }
    private boolean ignoreGotoLines;
 

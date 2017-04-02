@@ -72,7 +72,7 @@ public class NbEditorAdapter implements EditorAdapter {
         if (line <= 1 || filename.equals("")) {
             return;
         }
-        /*try {
+        try {
             filename = filename.replace('\\', '/');//Zuweisung an parameter?
             FileObject fileobject = FileUtil.toFileObject(new File(filename));
             DataObject dataobject = DataObject.find(fileobject);
@@ -85,7 +85,7 @@ public class NbEditorAdapter implements EditorAdapter {
             l.show(Line.SHOW_GOTO);
         } catch (Exception exception) {
             BrowserErrorHandler.handleError("Could not seek to line in file: " + filename + ".", exception);
-        }*/
+        }
     }
 
     public void pasteToCaretPos(String string) {

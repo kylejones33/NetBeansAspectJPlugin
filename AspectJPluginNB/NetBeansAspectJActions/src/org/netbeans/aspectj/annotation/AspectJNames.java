@@ -5,10 +5,6 @@
 
 package org.netbeans.aspectj.annotation;
 
-/**
- *
- * @author Ramos
- */
 public interface AspectJNames {
     String ADVISED_BY = "advised by";
     String ADVISES = "advises";

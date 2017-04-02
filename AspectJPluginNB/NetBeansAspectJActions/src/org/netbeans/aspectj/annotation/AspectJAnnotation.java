@@ -10,18 +10,14 @@ import org.aspectj.asm.IProgramElement;
 import org.aspectj.asm.internal.Relationship;
 import org.openide.text.Annotation;
 
-/**
- *
- * @author ramos
- */
+
 public class AspectJAnnotation extends Annotation
         implements AspectjAnnotationConstants, AspectJNames {
 
-    //tooltip dynamisch
     private String text = "empty";
     private List<Relationship> relationships;
     private IProgramElement sourceElement;
-    //annotationType variabel,bestimmt glyph
+
     private String annotationType = ASPECTJ_ANNOTATION;
 
     public AspectJAnnotation(List<Relationship> relationships,
@@ -64,12 +60,7 @@ public class AspectJAnnotation extends Annotation
                     annotationType = ITD_TARGET;
                 }
             } else if (relationshipName.equals(DECLARED_ON) || relationshipName.equals(ANNOTATES) || relationshipName.equals(MATCHED_BY)) /*error,warning?*/ {
-                //System.out.println("SOURCE:");
-                //inspectProgrammElement(source);
-                //System.out.println("TARGET:");
-                //inspectProgrammElement(toProgrammElement(targets.get(0)));
-                //inspectProgrammElement(target);
-                //eigentlich nur wenn "matched by"
+
                 IProgramElement pe = source;
                 if (pe.getKind().equals(IProgramElement.Kind.DECLARE_WARNING)) {
                     annotationType = DECLARE_WARNING_SOURCE;
@@ -81,8 +72,7 @@ public class AspectJAnnotation extends Annotation
             }
         } else {
             handleMaybeSourceAndTarget(relationships);
-        //wenn einmal affects und einmal nicht
-        //else "org-aspectj-tools-ajde-netbeans-aspectjannotation"; //implizit
+
         }
     }
 

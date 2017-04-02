@@ -26,8 +26,8 @@ public class AspectJPluginToolbarAdd implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        JOptionPane.showMessageDialog(null, "This will parse and validate Aspects");
-        //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(null, "This will compile the Aspects file");
+            AspectJPluginNBManager.INSTANCE.compile();
     }
     
 }

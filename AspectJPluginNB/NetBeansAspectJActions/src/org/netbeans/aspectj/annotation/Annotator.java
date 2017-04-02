@@ -26,16 +26,13 @@ import org.openide.cookies.LineCookie;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataObject;
-import org.openide.util.lookup.*;
-import org.openide.nodes.Node;
+
 import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.text.Annotation;
+
 import org.openide.text.Line;
 
-/**
- *
- * @author ramos
- */
+
 public class Annotator implements IHierarchyListener {
 
     private List<AspectJAnnotation> attachedAnnotations = new ArrayList<AspectJAnnotation>();

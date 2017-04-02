@@ -7,36 +7,24 @@ package org.netbeans.aspectj.compileonsave;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.nio.file.*;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import org.aspectj.ajde.Ajde;
 import org.aspectj.asm.AsmManager;
 import org.aspectj.asm.IHierarchy;
 import org.aspectj.asm.IHierarchyListener;
 import org.aspectj.asm.IProgramElement;
-import org.aspectj.asm.internal.ProgramElement;
 import org.netbeans.aspectj.actions.AspectJPluginNBManager;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataObject;
-import org.openide.nodes.Node;
 
 import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.util.Exceptions;
 
-
-
-/**
- *
- * @author Ramos
- * if this action is enabled the listener is added to DataObject.getRegistry()
- */
 public class CompileOnSave implements ChangeListener, IHierarchyListener {
 
    private static CompileOnSave INSTANCE = new CompileOnSave();
@@ -141,8 +129,6 @@ public class CompileOnSave implements ChangeListener, IHierarchyListener {
             ex.printStackTrace();
          }
       }
-   //System.out.println("set: "+set);
-
    }
 
     @Override
@@ -169,9 +155,6 @@ public class CompileOnSave implements ChangeListener, IHierarchyListener {
 
       private boolean isCompileTrigger(PropertyChangeEvent evt) {
          return !pause && evt.getPropertyName().equals(DataObject.PROP_MODIFIED) && !fileObject.lastModified().equals(lastModifiedRecord.get(fileDataObject)) && evt.getOldValue().equals(true) && evt.getNewValue().equals(false);
-         //sometimes triggered by making changes and then undo without
-         //saving
-         //inspect file on disk?
       }
    }
 }

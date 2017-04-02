@@ -10,10 +10,7 @@ import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.util.Cancellable;
 
-/**
- *
- * @author Ramos
- */
+
 public class ProgressMonitor implements IBuildProgressMonitor{
 
     private ProgressHandle handle;
