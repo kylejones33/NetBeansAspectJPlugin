@@ -1,0 +1,5 @@
+# NetBeansAspectJPlugin
+AspectJ-for-NetBeans: Plugin for working with AspectJ in NetBeans. This project is the result of the SWEN 670 Capstone Project course at University of Maryland University College: Dan Allex, Ben Boals, Sean Scales, Ben Ferry and Kyle Jones. The plugin results from work done on the open source distribution of the Ramon Ramos' AspectJ-for-NetBeans code available on GitHub. Our team focused on basic requirements for building and running AspectJ programs. This version has been verified to be stable in NetBeans X.X.X, X.X, MAC OS X... Installation: Download the (.nbm) file into a folder. Open NetBeans and under Tools go to Plugins. Click the Download tab in the Plugins window. Click to "Add Plugins". Follow the prompts to open and select the (.nbm) file. Click to install the plugins. This will then prompt you to close and reopen NetBeans. //Still need to finish instructions...
+
+The following resources were used to implement this plugin:
+http://wiki.netbeans.org/IntroNetBeansPluginDev
